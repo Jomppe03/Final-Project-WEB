@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from 'react';
 
-function Recipes() {
+function Recipes({ onAddToPlan }) {
   const [searchQuery, setSearchQuery] = useState('chicken');
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [selectedDay, setSelectedDay] = useState('Monday');
 
   async function searchRecipes(query) {
     setLoading(true);
@@ -41,6 +42,13 @@ function Recipes() {
   function handleSubmit(event) {
     event.preventDefault();
     searchRecipes(searchQuery.trim());
+  }
+
+  function handleAddToPlan() {
+    if (!selectedRecipe || !onAddToPlan) return;
+
+    onAddToPlan(selectedRecipe, selectedDay);
+    setSelectedRecipe(null);
   }
 
   return (
@@ -186,6 +194,42 @@ function Recipes() {
                   })}
                 </ul>
 
+                <div className="border rounded p-3 my-4">
+                  <h3 className="h5">Add to Meal Planner</h3>
+
+                  <label
+                    htmlFor="meal-day"
+                    className="form-label"
+                  >
+                    Select a day
+                  </label>
+
+                  <select
+                    id="meal-day"
+                    className="form-select mb-3"
+                    value={selectedDay}
+                    onChange={(event) =>
+                      setSelectedDay(event.target.value)
+                    }
+                  >
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                  </select>
+
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={handleAddToPlan}
+                  >
+                    Add to Meal Planner
+                  </button>
+                </div>
+
                 <h3 className="h5 mt-4">Instructions</h3>
 
                 <p style={{ whiteSpace: 'pre-line' }}>
@@ -223,3 +267,4 @@ function Recipes() {
 }
 
 export default Recipes;
+
