@@ -60,7 +60,7 @@ function App() {
 
         <Route
           path="/shopping-list"
-          element={<ShoppingList />}
+          element={<ShoppingList mealPlan={mealPlan} />}
         />
       </Routes>
     </BrowserRouter>
