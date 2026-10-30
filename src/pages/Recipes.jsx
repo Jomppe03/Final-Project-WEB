@@ -25,7 +25,9 @@ function Recipes() {
 
       setRecipes(data.meals || []);
     } catch (error) {
-      setError('Reseptejä ei voitu hakea. Tarkista internetyhteys ja yritä uudelleen.');
+      setError(
+        'Reseptejä ei voitu hakea. Tarkista internetyhteys ja yritä uudelleen.'
+      );
       setRecipes([]);
     } finally {
       setLoading(false);
@@ -83,7 +85,10 @@ function Recipes() {
 
       <div className="row g-4">
         {recipes.map((recipe) => (
-          <div className="col-12 col-sm-6 col-lg-4" key={recipe.idMeal}>
+          <div
+            className="col-12 col-sm-6 col-lg-4"
+            key={recipe.idMeal}
+          >
             <div className="card h-100 shadow-sm">
               <img
                 src={recipe.strMealThumb}
@@ -93,17 +98,126 @@ function Recipes() {
               />
 
               <div className="card-body">
-                <h5 className="card-title">{recipe.strMeal}</h5>
+                <h5 className="card-title">
+                  {recipe.strMeal}
+                </h5>
 
                 <p className="card-text text-muted">
                   {recipe.strCategory || 'Recipe'}
                   {recipe.strArea && ` • ${recipe.strArea}`}
                 </p>
+
+                <button
+                  className="btn btn-outline-primary mt-2"
+                  onClick={() => setSelectedRecipe(recipe)}
+                >
+                  View Recipe
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {selectedRecipe && (
+        <div
+          className="modal d-block"
+          tabIndex="-1"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="recipe-modal-title"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+        >
+          <div className="modal-dialog modal-lg modal-dialog-scrollable">
+            <div className="modal-content">
+
+              <div className="modal-header">
+                <h2
+                  className="modal-title fs-5"
+                  id="recipe-modal-title"
+                >
+                  {selectedRecipe.strMeal}
+                </h2>
+
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setSelectedRecipe(null)}
+                  aria-label="Close"
+                />
+              </div>
+
+              <div className="modal-body">
+                <img
+                  src={selectedRecipe.strMealThumb}
+                  alt={selectedRecipe.strMeal}
+                  className="img-fluid rounded mb-3"
+                  style={{
+                    maxHeight: '300px',
+                    width: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+
+                <p className="text-muted">
+                  {selectedRecipe.strCategory || 'Recipe'}
+                  {selectedRecipe.strArea &&
+                    ` • ${selectedRecipe.strArea}`}
+                </p>
+
+                <h3 className="h5 mt-4">Ingredients</h3>
+
+                <ul>
+                  {Array.from({ length: 20 }, (_, i) => {
+                    const ingredient =
+                      selectedRecipe[`strIngredient${i + 1}`];
+                    const measure =
+                      selectedRecipe[`strMeasure${i + 1}`];
+
+                    if (!ingredient || !ingredient.trim()) {
+                      return null;
+                    }
+
+                    return (
+                      <li key={i}>
+                        {measure} {ingredient}
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <h3 className="h5 mt-4">Instructions</h3>
+
+                <p style={{ whiteSpace: 'pre-line' }}>
+                  {selectedRecipe.strInstructions ||
+                    'Instructions are not available.'}
+                </p>
+
+                {selectedRecipe.strYoutube && (
+                  <a
+                    href={selectedRecipe.strYoutube}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-outline-danger"
+                  >
+                    Watch on YouTube
+                  </a>
+                )}
+              </div>
+
+              <div className="modal-footer">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setSelectedRecipe(null)}
+                >
+                  Close
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
