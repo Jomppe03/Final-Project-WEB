@@ -54,3 +54,8 @@ Avaa terminaalissa näkyvä paikallinen osoite selaimessa.
 Käytetty API:
 
 Projektissa käytetään TheMealDB API -rajapintaa, jonka avulla haetaan reseptejä ja niiden tietoja.
+
+## Linkit
+
+- [Avaa Recipe Finder](https://jomppe03.github.io/Final-Project-WEB/)
+- [GitHub-repositorio](https://github.com/Jomppe03/Final-Project-WEB)
