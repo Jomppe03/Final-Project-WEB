@@ -1,16 +1,56 @@
-# React + Vite
+Recipe Finder
+Recipe Finder on verkkosovellus, jonka avulla käyttäjä pystyy hakemaan eri reseptejä ja koota niistä viikottaisen ruokasuunnitelman. Sovellus tekee myös suoraan ostoslistan, josta on helppo seurata mitä jo löytyy kotoa ja mitä tarvitsee kaupasta hankkia.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ominaisuudet:
+Reseptien hakeminen TheMealDB API avulla.
 
-Currently, two official plugins are available:
+Reseptien tietojen, ainesosien ja valmistusohjeiden tarkastelu.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Reseptien lisääminen viikon ateriasuunnitelmaan.
 
-## React Compiler
+Viikottaisen ateriasuunnitelman suunnittelua.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Ostoslistan muodostaminen ateriasuunnitelman perusteella.
 
-## Expanding the ESLint configuration
+Ainesosien merkitseminen hankituiksi.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Ateriasuunnitelman ja ostoslistan tietojen tallentaminen selaimen localStorage-muistiin.
+
+
+Käytetyt teknologiat ja kirjastot:
+
+React – käyttöliittymän toteuttamiseen.
+
+JavaScript – sovelluksen ohjelmointiin.
+
+Vite – kehitysympäristönä ja sovelluksen käynnistämiseen.
+
+React Router – sivujen väliseen navigointiin.
+
+Bootstrap – käyttöliittymän ulkoasun toteuttamiseen.
+
+Lucide React – kuvakkeiden käyttämiseen.
+
+TheMealDB API – reseptitietojen hakemiseen.
+
+
+Asennus ja käynnistäminen:
+
+Lataa tai kloonaa projektin GitHub-repositorio omalle tietokoneellesi.
+
+Avaa projektin kansio terminaalissa.
+
+Asenna projektin riippuvuudet komennolla:
+
+npm install
+
+Käynnistä sovellus komennolla:
+
+npm run dev
+
+Avaa terminaalissa näkyvä paikallinen osoite selaimessa.
+
+
+Käytetty API:
+
+Projektissa käytetään TheMealDB API -rajapintaa, jonka avulla haetaan reseptejä ja niiden tietoja.
